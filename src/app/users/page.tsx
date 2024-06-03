@@ -11,6 +11,7 @@ import { logout } from "@/app/store";
 import { authorizationHeaders } from "@/utils/authorizationHeaders";
 
 import Card from "@/components/ui/Card";
+import Title from "@/components/ui/Title";
 
 export default function UsersPage() {
   const router = useRouter();
@@ -33,14 +34,17 @@ export default function UsersPage() {
   }, [router]);
 
   return (
-    <div className="flex gap-6">
-      {users.map((user) => (
-        <Link key={user.id} href={`/users/${user.id}`} className="flex">
-          <Card clickable>
-            <p>{user.email}</p>
-          </Card>
-        </Link>
-      ))}
-    </div>
+    <>
+      <Title title="Utilisateurs" />
+      <div className="flex gap-6">
+        {users.map((user) => (
+          <Link key={user.id} href={`/users/${user.id}`} className="flex">
+            <Card clickable>
+              <p>{user.email}</p>
+            </Card>
+          </Link>
+        ))}
+      </div>
+    </>
   );
 }

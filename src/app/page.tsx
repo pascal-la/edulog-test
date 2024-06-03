@@ -1,11 +1,12 @@
 "use client";
 
 import ProtectedRoute from "@/components/ProtectedRoute";
+import Title from "@/components/ui/Title";
 
 const HomePage = () => {
   return (
     <div className="w-full text-center">
-      <h1>Bienvenue sur le portail de sortie scolaire</h1>
+      <Title title="Bienvenue sur le portail de sortie scolaire" />
     </div>
   );
 };

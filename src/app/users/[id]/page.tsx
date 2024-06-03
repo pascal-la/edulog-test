@@ -8,6 +8,7 @@ import { User } from "@/types/user";
 import { authorizationHeaders } from "@/utils/authorizationHeaders";
 
 import Card from "@/components/ui/Card";
+import Title from "@/components/ui/Title";
 
 export default function UserDetails({ params }: { params: { id: string } }) {
   const { id } = params;
@@ -26,12 +27,15 @@ export default function UserDetails({ params }: { params: { id: string } }) {
   }, [id]);
 
   return (
-    <div className="flex">
-      <Card>
-        <p>id: {user?.id}</p>
-        <p>email: {user?.email}</p>
-        <p>Roles: {user?.roles}</p>
-      </Card>
-    </div>
+    <>
+      <Title title={user?.email} />
+      <div className="flex">
+        <Card>
+          <p>id: {user?.id}</p>
+          <p>email: {user?.email}</p>
+          <p>Roles: {user?.roles}</p>
+        </Card>
+      </div>
+    </>
   );
 }

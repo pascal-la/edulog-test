@@ -5,6 +5,8 @@ import axios from "axios";
 
 import useAuthStore from "@/app/store";
 
+import Title from "@/components/ui/Title";
+
 const inputs = [
   {
     label: "E-mail",
@@ -52,21 +54,24 @@ export default function LoginPage() {
   }
 
   return (
-    <form ref={ref} action={signIn}>
-      {inputs.map((input) => (
-        <div key={input.type}>
-          <label>{input.label}</label>
-          <div className="mt-2.5">
-            <input
-              id={input.type}
-              type={input.type}
-              name={input.type}
-              required
-            />
+    <>
+      <Title title="Portail de sortie scolaire" />
+      <form ref={ref} action={signIn}>
+        {inputs.map((input) => (
+          <div key={input.type}>
+            <label>{input.label}</label>
+            <div className="mt-2.5">
+              <input
+                id={input.type}
+                type={input.type}
+                name={input.type}
+                required
+              />
+            </div>
           </div>
-        </div>
-      ))}
-      <button type="submit">Se connecter</button>
-    </form>
+        ))}
+        <button type="submit">Se connecter</button>
+      </form>
+    </>
   );
 }
