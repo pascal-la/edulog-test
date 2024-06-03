@@ -4,22 +4,20 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import axios from "axios";
 
-import useAuthStore from "@/app/store";
+import { authorizationHeaders } from "@/utils/authorizationHeaders";
 
 export default function UsersPage() {
-  const { tokenName } = useAuthStore();
-
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
     async function fetchUsers() {
       const response = await axios.get("https://localhost:8000/api/users", {
-        headers: { Authorization: `Bearer ${localStorage.getItem(tokenName)}` },
+        headers: { ...authorizationHeaders },
       });
       setUsers(response.data["hydra:member"]);
     }
     fetchUsers();
-  }, [tokenName]);
+  }, []);
 
   return (
     <>
