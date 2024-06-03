@@ -3,6 +3,8 @@
 import { useRef } from "react";
 import axios from "axios";
 
+import useAuthStore from "@/app/store";
+
 const inputs = [
   {
     label: "E-mail",
@@ -16,6 +18,8 @@ const inputs = [
 
 export default function LoginPage() {
   const ref = useRef<HTMLFormElement>(null);
+
+  const { login } = useAuthStore();
 
   async function signIn(formData: FormData) {
     const username = formData.get("email");
@@ -35,7 +39,7 @@ export default function LoginPage() {
       const { message, token } = response.data;
 
       if (response.status === 200) {
-        console.log("token: ", token);
+        login(token);
       } else {
         throw new Error(message || "Login failed");
       }
