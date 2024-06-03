@@ -39,7 +39,12 @@ export default function AttachmentDetails({
           <div className="grid gap-5">
             <p>Nom du fichier: {attachment?.originalName}</p>
             <p>Taille: {attachment?.size}</p>
-            <p>{attachment?.id}</p>
+            <Link
+              href={`/attachments/${attachment?.id}/get-file`}
+              className="hover:text-indigo-500"
+            >
+              DL
+            </Link>
           </div>
         </Card>
       </div>
