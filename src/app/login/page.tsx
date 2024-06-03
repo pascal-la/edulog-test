@@ -54,7 +54,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex flex-col items-center gap-20">
+    <div className="flex flex-col items-center gap-20 pr-64">
       <Title title="Portail de sortie scolaire" />
       <form ref={ref} action={signIn} className="grid gap-8 w-full max-w-2xl">
         {inputs.map((input) => (
