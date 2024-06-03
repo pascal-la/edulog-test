@@ -28,3 +28,4 @@ const useAuthStore = create<AuthStore>((set) => ({
 export default useAuthStore;
 
 export const tokenName = useAuthStore.getState().tokenName;
+export const logout = useAuthStore.getState().logout;

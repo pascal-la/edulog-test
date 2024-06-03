@@ -2,22 +2,31 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import axios from "axios";
 
+import { logout } from "@/app/store";
 import { authorizationHeaders } from "@/utils/authorizationHeaders";
 
 export default function UsersPage() {
+  const router = useRouter();
+
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
     async function fetchUsers() {
-      const response = await axios.get("https://localhost:8000/api/users", {
-        headers: { ...authorizationHeaders },
-      });
-      setUsers(response.data["hydra:member"]);
+      try {
+        const response = await axios.get("https://localhost:8000/api/users", {
+          headers: { ...authorizationHeaders },
+        });
+        setUsers(response.data["hydra:member"]);
+      } catch (error) {
+        router.replace("/login");
+        logout();
+      }
     }
     fetchUsers();
-  }, []);
+  }, [router]);
 
   return (
     <>
