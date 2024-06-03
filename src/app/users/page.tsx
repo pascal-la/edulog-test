@@ -10,6 +10,8 @@ import { User } from "@/types/user";
 import { logout } from "@/app/store";
 import { authorizationHeaders } from "@/utils/authorizationHeaders";
 
+import Card from "@/components/ui/Card";
+
 export default function UsersPage() {
   const router = useRouter();
 
@@ -31,14 +33,14 @@ export default function UsersPage() {
   }, [router]);
 
   return (
-    <>
-      <div className="flex gap-6">
-        {users.map((user) => (
-          <Link key={user.id} href={`/users/${user.id}`} className="flex">
-            <span>{user.email}</span>
-          </Link>
-        ))}
-      </div>
-    </>
+    <div className="flex gap-6">
+      {users.map((user) => (
+        <Link key={user.id} href={`/users/${user.id}`} className="flex">
+          <Card clickable>
+            <p>{user.email}</p>
+          </Card>
+        </Link>
+      ))}
+    </div>
   );
 }
