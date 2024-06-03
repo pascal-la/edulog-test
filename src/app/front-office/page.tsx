@@ -4,6 +4,7 @@ import { useRef } from "react";
 import Link from "next/link";
 import axios from "axios";
 
+import Button from "@/components/ui/Button";
 import Title from "@/components/ui/Title";
 
 const inputs = [
@@ -119,12 +120,7 @@ export default function FrontOfficePage() {
     <div className="flex flex-col items-center gap-20 pr-64">
       <div className="grid w-full max-w-2xl gap-12">
         <div className="flex w-full">
-          <button
-            type="submit"
-            className="block rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-          >
-            <Link href="/">Retour</Link>
-          </button>
+          <Button text="Retour" href="/" />
         </div>
         <div className="text-center">
           <Title title="Autorisation de sortie" />
@@ -147,12 +143,7 @@ export default function FrontOfficePage() {
               </div>
             </div>
           ))}
-          <button
-            type="submit"
-            className="block mt-8 w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-          >
-            Envoyer
-          </button>
+          <Button text="Envoyer" />
         </form>
       </div>
     </div>
