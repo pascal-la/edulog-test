@@ -5,13 +5,15 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 
+import { User } from "@/types/user";
+
 import { logout } from "@/app/store";
 import { authorizationHeaders } from "@/utils/authorizationHeaders";
 
 export default function UsersPage() {
   const router = useRouter();
 
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState<User[]>([]);
 
   useEffect(() => {
     async function fetchUsers() {
@@ -33,7 +35,7 @@ export default function UsersPage() {
       <div className="flex gap-6">
         {users.map((user) => (
           <Link key={user.id} href={`/users/${user.id}`} className="flex">
-            <p>{user.email}</p>
+            <span>{user.email}</span>
           </Link>
         ))}
       </div>
