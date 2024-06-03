@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from "react";
 import axios from "axios";
 
 const inputs = [
@@ -14,6 +15,8 @@ const inputs = [
 ];
 
 export default function LoginPage() {
+  const ref = useRef<HTMLFormElement>(null);
+
   async function signIn(formData: FormData) {
     const username = formData.get("email");
     const password = formData.get("password");
@@ -29,20 +32,23 @@ export default function LoginPage() {
         }
       );
 
-      const { message } = response.data;
+      const { message, token } = response.data;
 
       if (response.status === 200) {
-        console.log("login ok", response);
+        console.log("token: ", token);
       } else {
         throw new Error(message || "Login failed");
       }
     } catch (err: any) {
+      alert("Login failed: " + (err.response?.data?.message || err.message));
       console.error(err);
+    } finally {
+      ref.current?.reset();
     }
   }
 
   return (
-    <form action={signIn}>
+    <form ref={ref} action={signIn}>
       {inputs.map((input) => (
         <div key={input.type}>
           <label>{input.label}</label>
